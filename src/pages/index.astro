@@ -1,16 +1,61 @@
 ---
+// Import Components
+import Layout from '../layouts/Layout.astro';
+import HeaderNavbar from '../components/HeaderNavbar.jsx';
+import HeroSection from '../components/HeroSection.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import IntroSection from '../components/IntroSection.astro';
+import FoundersSection from '../components/FoundersSection.astro';
+import FlowsSection from '../components/FlowsSection.astro';
+import SpecialFlowsSection from '../components/SpecialFlowsSection.astro';
+import Footer from '../components/Footer.astro';
 
+// --- Data Layer (Content) ---
+const introText = {
+  title: "در ایوان جریان",
+  p1: "اینجا، در سایه‌سار کلمات گرد هم می‌آییم. جلسه ی جریان، محفلی است دوستانه، همچون قهوه‌خانه‌های قدیم که در آن نه فقط چای، که شعر و شعور رد و بدل می‌شد. چهارشنبه‌ها، چراغ این خانه روشن است.",
+  p2: "با تسهیلگری سرکار خانم علی‌نیا، غبار از روی کتاب‌های بزرگ جهان می‌گیریم و در معماری تودرتوی داستان‌ها گم می‌شویم."
+};
+
+const founders = [
+  { name: "خانم ترانه علی‌نیا", role: "معمار واژگان", image: "https://hadihashemi.info/wp-content/uploads/2025/12/IMG_20251205_213022_587.jpg" },
+  { name: "خانم مریم علی‌نیا", role: "نگارگر محتوا", image: "https://hadihashemi.info/wp-content/uploads/2025/12/IMG_20251212_142114_691.jpg" },
+  { name: "آقای امیر سلمان", role: "میزبان ارتباطات", image: "https://hadihashemi.info/wp-content/uploads/2025/12/IMG_20251212_141637_387.jpg" }
+];
+
+const literaryFlows = [
+  { country: "ایران", flag: "🇮🇷", style: "border-t-ajor", books: ["سه قطره خون", "خانه ادریسی‌ها", "سووشون"] },
+  { country: "روسیه", flag: "🇷🇺", style: "border-t-lajevard", books: ["شب‌های روشن", "جنایت و مکافات", "مست و مستور"] },
+  { country: "فرانسه", flag: "🇫🇷", style: "border-t-firoozeh", books: ["بیگانه", "تهوع", "شازده کوچولو"] },
+  { country: "ژاپن", flag: "🇯🇵", style: "border-t-tala", books: ["کافکا در کرانه", "زوال بشری", "هزار درنا"] },
+  { country: "آمریکای لاتین", flag: "🌎", style: "border-t-green-600", books: ["صد سال تنهایی", "پدرو پارامو", "الف"] },
+  { country: "چک", flag: "🇨🇿", style: "border-t-slate-600", books: ["مسخ", "بار هستی", "شوخی"] },
+];
+
+const specialFlows = [
+  { title: "جریان زیسته", desc: "روایت‌هایی از دلِ زندگی واقعی", icon: "🌱", image: "https://hadihashemi.info/wp-content/uploads/2025/12/بهترین-ناداستان_های-جهان-768x432-1.webp" },
+  { title: "جریان واژه", desc: "کارگاه قلم‌زنی و خلق داستان", icon: "✍️", image: "https://hadihashemi.info/wp-content/uploads/2025/12/images-1.jpg" },
+  { title: "جریان تصویر", desc: "تماشای ادبیات بر پرده نقره‌ای", icon: "🎬", image: "https://hadihashemi.info/wp-content/uploads/2025/12/imصges.jpg" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="گروه ادبی جریان | معماری کلمات">
+  
+  <HeaderNavbar client:load />
+  <HeroSection />
+
+  <SectionDivider />
+
+  <IntroSection data={introText} />
+
+  <SectionDivider />
+
+  <FoundersSection founders={founders} />
+
+  <FlowsSection flows={literaryFlows} />
+
+  <SpecialFlowsSection flows={specialFlows} />
+
+  <Footer />
+
+</Layout>

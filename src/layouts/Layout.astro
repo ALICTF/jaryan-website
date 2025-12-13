@@ -1,0 +1,39 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fa" dir="rtl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="گروه ادبی جریان - نقد و بررسی آثار ادبی" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body class="font-['Vazirmatn'] bg-slate-50 text-slate-800">
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #888;
+		border-radius: 4px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+</style>

@@ -1,0 +1,47 @@
+---
+interface Flow {
+  country: string;
+  flag: string;
+  style: string;
+  books: string[];
+}
+
+interface Props {
+  flows: Flow[];
+}
+
+const { flows } = Astro.props;
+---
+
+<section id="flows" class="py-24 bg-lajevard relative">
+    <div class="absolute inset-0 bg-girih opacity-10"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 text-white">
+            <h3 class="text-4xl font-black mb-4">کاشی‌کاری ادبی</h3>
+            <p class="text-firoozeh opacity-90">قطعه‌هایی از ادبیات جهان که کنار هم چیده‌ایم</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {flows.map((flow) => (
+                // کارت‌ها شبیه کاشی لعاب‌دار
+                <div class={`bg-white rounded-xl overflow-hidden border-t-8 ${flow.style} shadow-lg hover:shadow-glaze transition duration-300 group`}>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                            <h4 class="text-xl font-bold text-lajevard">{flow.country}</h4>
+                            <span class="text-2xl opacity-80 grayscale group-hover:grayscale-0 transition">{flow.flag}</span>
+                        </div>
+                        <ul class="space-y-3">
+                            {flow.books.map((book) => (
+                                <li class="text-slate-600 text-sm flex items-center gap-2 group-hover:text-lajevard transition-colors">
+                                    <span class="w-2 h-2 rotate-45 bg-firoozeh"></span>
+                                    {book}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

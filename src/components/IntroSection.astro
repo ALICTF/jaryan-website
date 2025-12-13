@@ -1,0 +1,46 @@
+---
+interface Props {
+  data: {
+    title: string;
+    p1: string;
+    p2: string;
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<section id="about" class="py-24 bg-kashi relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-lajevard via-firoozeh to-lajevard"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+       <div class="flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-80 h-[450px]">
+                    <div class="absolute inset-0 bg-lajevard rounded-t-[10rem] shadow-2xl transform -translate-x-4 translate-y-4"></div>
+                    <div class="absolute inset-0 bg-white rounded-t-[10rem] overflow-hidden border-4 border-tala shadow-inner">
+                        <img src="https://hadihashemi.info/wp-content/uploads/2025/12/IMG_20251205_173538_889-1536x864-1.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-1000" alt="جلسات جریان">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-firoozeh rounded-full opacity-80 mix-blend-multiply blur-2xl animate-pulse"></div>
+                </div>
+            </div>
+
+            <div class="md:w-1/2 text-right">
+                <div class="flex items-center gap-3 mb-6">
+                    <svg class="w-6 h-6 text-firoozeh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 8L12 10L16 16L12 18L17 22H7L12 18L8 16L12 10L9 8L12 2Z"/></svg>
+                    <span class="text-lajevard font-bold text-sm tracking-wider">حکایت ما</span>
+                </div>
+                <h3 class="text-4xl lg:text-5xl font-black text-lajevard mb-8 leading-tight drop-shadow-sm">{data.title}</h3>
+                
+                <div class="bg-white p-8 rounded-tr-3xl rounded-bl-3xl border-r-4 border-firoozeh shadow-glaze relative">
+                    <div class="absolute inset-0 bg-eslimi opacity-[0.05]"></div>
+                    <p class="text-slate-700 leading-9 text-justify text-lg relative z-10">
+                        {data.p1}
+                        <br/><br/>
+                        <span class="text-ajor font-bold">{data.p2}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
