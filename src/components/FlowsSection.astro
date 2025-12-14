@@ -1,9 +1,8 @@
 ---
-/* Flows.astro - اصلاح شده: حذف پرچم از دایره + واترمارک فرهنگی */
+/* Flows.astro - طرح باغ کاغذی (مینیمال و آبرنگی) */
 interface Flow {
   country: string;
   flag: string;
-  // مثلا: border-red-500 یا bg-red-500
   style: string;
   books: string[];
 }
@@ -19,94 +18,85 @@ const extractColorClass = (styleClass: string) => {
 };
 ---
 
-<section id="flows" class="py-32 bg-lajevard relative overflow-hidden perspective-1000">
+<section id="flows" class="py-32 bg-[#F9F9F9] relative overflow-hidden">
     
-    <div class="absolute inset-0 opacity-20 pointer-events-none">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] bg-fixed animate-pulse-slow"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-lajevard via-transparent to-lajevard"></div>
+    <div class="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] mix-blend-multiply"></div>
+    
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.03] pointer-events-none rotate-12">
+        <svg viewBox="0 0 200 200" fill="currentColor" class="text-lajevard">
+             <path d="M100 0 C 120 50, 150 50, 150 100 C 150 150, 100 150, 100 200 C 80 150, 50 150, 50 100 C 50 50, 100 50, 100 0 Z" />
+        </svg>
     </div>
 
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-firoozeh/20 rounded-full blur-[120px] mix-blend-screen animate-float-particle"></div>
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-tala/10 rounded-full blur-[120px] mix-blend-screen animate-float-particle animation-delay-2000"></div>
-    
     <div class="container mx-auto px-6 relative z-10">
         
-        <div class="text-center mb-24 relative">
-            <div class="inline-block">
-                <h3 class="text-5xl lg:text-6xl font-black text-white mb-6 drop-shadow-[0_5px_15px_rgba(14,165,233,0.5)] relative z-10">کاشی‌کاری ادبی</h3>
-                <div class="h-1 w-1/2 mx-auto bg-gradient-to-r from-transparent via-tala to-transparent rounded-full mb-4"></div>
-                <p class="text-firoozeh text-xl opacity-90 font-medium tracking-wide">قطعه‌هایی از ادبیات جهان که کنار هم چیده‌ایم</p>
-            </div>
+        <div class="text-center mb-20">
+            <span class="text-tala text-sm font-bold tracking-[0.3em] uppercase block mb-3 animate-fade-in-up">ادبیات جهان</span>
+            <h3 class="text-4xl lg:text-5xl font-black text-ink mb-6 drop-shadow-sm font-['Vazirmatn']">سرزمین‌های کلمات</h3>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {flows.map((flow) => {
                 const themeColor = extractColorClass(flow.style);
                 
                 return (
-                <div class="group relative h-full" style={{ perspective: '1000px' }}>
+                <div class="group relative h-full">
                     
-                    <div class={`relative h-full bg-gradient-to-br from-[#FDFCF8] to-[#F0F0EB] rounded-t-full rounded-b-3xl overflow-hidden transition-all duration-500 transform group-hover:-translate-y-3 group-hover:rotate-x-2 shadow-xl group-hover:shadow-2xl border-[3px] border-white/50`}>
+                    <div class="relative h-full bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-100/50">
                         
-                        <div class="absolute -bottom-10 -left-10 text-9xl opacity-[0.07] group-hover:opacity-[0.15] transform rotate-12 grayscale group-hover:grayscale-0 transition-all duration-700 select-none pointer-events-none filter blur-[2px]">
-                            {flow.flag}
+                        <div class={`absolute -top-10 -right-10 w-40 h-40 bg-${themeColor} rounded-full blur-[60px] opacity-10 group-hover:opacity-20 transition-opacity duration-700`}></div>
+                        <div class={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-${themeColor}/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
+                        <div class="absolute top-6 left-6 opacity-10 group-hover:opacity-100 transition-all duration-700 pointer-events-none">
+                            <div class={`text-${themeColor} animate-spin-slow`}>
+                                <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L14.5 9.5H22L16 14.5L18.5 22L12 17.5L5.5 22L8 14.5L2 9.5H9.5L12 2Z" opacity="0.2"/>
+                                    <path d="M12 0L13.5 8H20L15 12.5L17.5 20L12 15L6.5 20L9 12.5L4 8H10.5L12 0Z" transform="rotate(45 12 12)" opacity="0.4"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-20 mix-blend-soft-light bg-gradient-to-tr from-transparent via-white/40 to-transparent animate-shimmer-diagonal"></div>
-                        <div class="absolute inset-0 shadow-[inset_0_10px_40px_rgba(0,0,0,0.1)] rounded-t-full rounded-b-3xl z-10 pointer-events-none"></div>
-
-                        <div class={`absolute inset-0 opacity-[0.1] group-hover:opacity-[0.2] transition-opacity duration-500 mix-blend-multiply pointer-events-none bg-gradient-to-tl from-${themeColor}/40 via-transparent to-transparent`}>
-                             <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/escheresque-dark.png')] bg-repeat opacity-50"></div>
-                        </div>
-                        
-                        <div class={`h-3 w-full bg-gradient-to-r from-${themeColor} via-white/20 to-${themeColor} relative overflow-hidden`}>
-                             <div class="absolute inset-0 bg-white/30 w-1/2 skew-x-12 animate-shimmer-right opacity-50"></div>
-                        </div>
-
-                        <div class="p-8 relative z-20 flex flex-col h-full">
+                        <div class="p-8 relative z-10">
                             
-                            <div class="flex flex-col items-center mb-8 relative">
-                                
-                                <div class={`w-20 h-20 rounded-full bg-white/90 backdrop-blur-md border-[3px] border-${themeColor}/30 group-hover:border-${themeColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-500 relative mb-4 overflow-hidden`}>
-                                    
-                                    <div class={`absolute inset-0 bg-gradient-to-tr from-${themeColor}/20 to-transparent opacity-50`}></div>
-                                    
-                                    <div class={`text-${themeColor} drop-shadow-sm transform group-hover:rotate-12 transition-transform duration-500`}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
-                                            <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.472a.75.75 0 001-.707V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
-                                        </svg>
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="relative w-14 h-14 shrink-0">
+                                    <div class={`absolute inset-0 bg-${themeColor}/10 rounded-xl rotate-6 group-hover:rotate-12 transition-transform duration-500`}></div>
+                                    <div class="absolute inset-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-2xl grayscale group-hover:grayscale-0 transition-all duration-500 z-10">
+                                        {flow.flag}
                                     </div>
                                 </div>
-
-                                <h4 class="text-2xl font-black text-ink group-hover:text-lajevard transition-colors duration-300">{flow.country}</h4>
                                 
-                                <div class="mt-4 flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
-                                    <div class={`h-px w-8 bg-gradient-to-l from-transparent to-${themeColor}`}></div>
-                                    <div class={`w-1.5 h-1.5 rotate-45 bg-${themeColor}`}></div>
-                                    <div class={`h-px w-8 bg-gradient-to-r from-transparent to-${themeColor}`}></div>
+                                <div class="flex flex-col">
+                                    <h4 class="text-2xl font-black text-ink group-hover:text-lajevard transition-colors duration-300">{flow.country}</h4>
+                                    <span class={`text-xs font-bold text-${themeColor} opacity-60 group-hover:opacity-100 transition-opacity duration-300`}>مجموعه آثار منتخب</span>
                                 </div>
                             </div>
 
-                            <ul class="space-y-4 flex-grow">
-                                {flow.books.map((book) => (
-                                    <li class="relative group/book">
-                                        <div class="flex items-center gap-3 p-3 rounded-xl bg-white/60 border border-ink/5 hover:bg-white hover:border-tala/30 transition-all duration-300 shadow-sm hover:shadow-md transform hover:translate-x-1">
-                                            <div class={`text-${themeColor} opacity-70 group-hover/book:opacity-100 transition-opacity`}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" /><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" /></svg>
+                            <div class="relative pl-4">
+                                <div class={`absolute right-1.5 top-2 bottom-6 w-px bg-slate-100 group-hover:bg-${themeColor}/30 transition-colors duration-500`}></div>
+
+                                <ul class="space-y-4">
+                                    {flow.books.map((book) => (
+                                        <li class="relative group/book pr-6">
+                                            <div class={`absolute right-0 top-2.5 w-3 h-3 rounded-full bg-white border-2 border-slate-200 group-hover:border-${themeColor} group-hover/book:bg-${themeColor} transition-colors duration-300 z-10`}></div>
+                                            
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-ink/70 font-medium text-base group-hover/book:text-ink transition-colors duration-300">
+                                                    {book}
+                                                </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class={`w-4 h-4 text-${themeColor} opacity-0 -translate-x-2 group-hover/book:opacity-100 group-hover/book:translate-x-0 transition-all duration-300`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                                </svg>
                                             </div>
-                                            <span class="text-ink/80 font-medium text-sm md:text-base group-hover/book:text-lajevard transition-colors leading-snug">
-                                                {book}
-                                            </span>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                             
-                            <div class={`mt-6 mx-auto w-12 h-1.5 rounded-full bg-${themeColor}/20 group-hover:bg-${themeColor}/50 transition-colors duration-500`}></div>
                         </div>
+
+                        <div class={`absolute bottom-0 left-0 w-full h-1 bg-${themeColor} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left`}></div>
                     </div>
-                    
-                    <div class={`absolute inset-x-4 bottom-0 h-12 bg-${themeColor} blur-[30px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 -z-10 rounded-full`}></div>
                 </div>
                 );
             })}
@@ -115,40 +105,20 @@ const extractColorClass = (styleClass: string) => {
 </section>
 
 <style>
-    @keyframes shimmerDiagonal {
-        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    /* چرخش آرام ماندالا */
+    @keyframes spinSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(35deg); }
     }
-    .animate-shimmer-diagonal {
-        animation: shimmerDiagonal 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
-    @keyframes shimmerRight {
-        0% { transform: translateX(-150%) skewX(12deg); }
-        100% { transform: translateX(150%) skewX(12deg); }
-    }
-    .animate-shimmer-right {
-        animation: shimmerRight 3s linear infinite;
+    .animate-spin-slow {
+        animation: spinSlow 30s linear infinite;
     }
 
-    @keyframes pulseSlow {
-        0%, 100% { opacity: 0.1; }
-        50% { opacity: 0.25; }
+    .animate-fade-in-up {
+        animation: fadeInUp 1s ease-out forwards;
     }
-    .animate-pulse-slow {
-        animation: pulseSlow 8s ease-in-out infinite;
-    }
-    
-    @keyframes floatParticle {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        33% { transform: translate(30px, -50px) rotate(10deg); }
-        66% { transform: translate(-20px, 40px) rotate(-5deg); }
-    }
-    .animate-float-particle {
-        animation: floatParticle 20s ease-in-out infinite alternate;
-    }
-    
-    .rotate-x-2 {
-        transform: rotateX(2deg) translateY(-12px);
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 </style>
