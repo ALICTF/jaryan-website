@@ -1,7 +1,9 @@
 ---
+/* Flows.astro - اصلاح شده: حذف پرچم از دایره + واترمارک فرهنگی */
 interface Flow {
   country: string;
   flag: string;
+  // مثلا: border-red-500 یا bg-red-500
   style: string;
   books: string[];
 }
@@ -11,37 +13,142 @@ interface Props {
 }
 
 const { flows } = Astro.props;
+
+const extractColorClass = (styleClass: string) => {
+    return styleClass.replace('border-', '').replace('bg-', '');
+};
 ---
 
-<section id="flows" class="py-24 bg-lajevard relative">
-    <div class="absolute inset-0 bg-girih opacity-10"></div>
+<section id="flows" class="py-32 bg-lajevard relative overflow-hidden perspective-1000">
+    
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] bg-fixed animate-pulse-slow"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-lajevard via-transparent to-lajevard"></div>
+    </div>
+
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-firoozeh/20 rounded-full blur-[120px] mix-blend-screen animate-float-particle"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-tala/10 rounded-full blur-[120px] mix-blend-screen animate-float-particle animation-delay-2000"></div>
     
     <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16 text-white">
-            <h3 class="text-4xl font-black mb-4">کاشی‌کاری ادبی</h3>
-            <p class="text-firoozeh opacity-90">قطعه‌هایی از ادبیات جهان که کنار هم چیده‌ایم</p>
+        
+        <div class="text-center mb-24 relative">
+            <div class="inline-block">
+                <h3 class="text-5xl lg:text-6xl font-black text-white mb-6 drop-shadow-[0_5px_15px_rgba(14,165,233,0.5)] relative z-10">کاشی‌کاری ادبی</h3>
+                <div class="h-1 w-1/2 mx-auto bg-gradient-to-r from-transparent via-tala to-transparent rounded-full mb-4"></div>
+                <p class="text-firoozeh text-xl opacity-90 font-medium tracking-wide">قطعه‌هایی از ادبیات جهان که کنار هم چیده‌ایم</p>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {flows.map((flow) => (
-                // کارت‌ها شبیه کاشی لعاب‌دار
-                <div class={`bg-white rounded-xl overflow-hidden border-t-8 ${flow.style} shadow-lg hover:shadow-glaze transition duration-300 group`}>
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
-                            <h4 class="text-xl font-bold text-lajevard">{flow.country}</h4>
-                            <span class="text-2xl opacity-80 grayscale group-hover:grayscale-0 transition">{flow.flag}</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+            {flows.map((flow) => {
+                const themeColor = extractColorClass(flow.style);
+                
+                return (
+                <div class="group relative h-full" style={{ perspective: '1000px' }}>
+                    
+                    <div class={`relative h-full bg-gradient-to-br from-[#FDFCF8] to-[#F0F0EB] rounded-t-full rounded-b-3xl overflow-hidden transition-all duration-500 transform group-hover:-translate-y-3 group-hover:rotate-x-2 shadow-xl group-hover:shadow-2xl border-[3px] border-white/50`}>
+                        
+                        <div class="absolute -bottom-10 -left-10 text-9xl opacity-[0.07] group-hover:opacity-[0.15] transform rotate-12 grayscale group-hover:grayscale-0 transition-all duration-700 select-none pointer-events-none filter blur-[2px]">
+                            {flow.flag}
                         </div>
-                        <ul class="space-y-3">
-                            {flow.books.map((book) => (
-                                <li class="text-slate-600 text-sm flex items-center gap-2 group-hover:text-lajevard transition-colors">
-                                    <span class="w-2 h-2 rotate-45 bg-firoozeh"></span>
-                                    {book}
-                                </li>
-                            ))}
-                        </ul>
+
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-20 mix-blend-soft-light bg-gradient-to-tr from-transparent via-white/40 to-transparent animate-shimmer-diagonal"></div>
+                        <div class="absolute inset-0 shadow-[inset_0_10px_40px_rgba(0,0,0,0.1)] rounded-t-full rounded-b-3xl z-10 pointer-events-none"></div>
+
+                        <div class={`absolute inset-0 opacity-[0.1] group-hover:opacity-[0.2] transition-opacity duration-500 mix-blend-multiply pointer-events-none bg-gradient-to-tl from-${themeColor}/40 via-transparent to-transparent`}>
+                             <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/escheresque-dark.png')] bg-repeat opacity-50"></div>
+                        </div>
+                        
+                        <div class={`h-3 w-full bg-gradient-to-r from-${themeColor} via-white/20 to-${themeColor} relative overflow-hidden`}>
+                             <div class="absolute inset-0 bg-white/30 w-1/2 skew-x-12 animate-shimmer-right opacity-50"></div>
+                        </div>
+
+                        <div class="p-8 relative z-20 flex flex-col h-full">
+                            
+                            <div class="flex flex-col items-center mb-8 relative">
+                                
+                                <div class={`w-20 h-20 rounded-full bg-white/90 backdrop-blur-md border-[3px] border-${themeColor}/30 group-hover:border-${themeColor} flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-500 relative mb-4 overflow-hidden`}>
+                                    
+                                    <div class={`absolute inset-0 bg-gradient-to-tr from-${themeColor}/20 to-transparent opacity-50`}></div>
+                                    
+                                    <div class={`text-${themeColor} drop-shadow-sm transform group-hover:rotate-12 transition-transform duration-500`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+                                            <path d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.472a.75.75 0 001-.707V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <h4 class="text-2xl font-black text-ink group-hover:text-lajevard transition-colors duration-300">{flow.country}</h4>
+                                
+                                <div class="mt-4 flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                                    <div class={`h-px w-8 bg-gradient-to-l from-transparent to-${themeColor}`}></div>
+                                    <div class={`w-1.5 h-1.5 rotate-45 bg-${themeColor}`}></div>
+                                    <div class={`h-px w-8 bg-gradient-to-r from-transparent to-${themeColor}`}></div>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-4 flex-grow">
+                                {flow.books.map((book) => (
+                                    <li class="relative group/book">
+                                        <div class="flex items-center gap-3 p-3 rounded-xl bg-white/60 border border-ink/5 hover:bg-white hover:border-tala/30 transition-all duration-300 shadow-sm hover:shadow-md transform hover:translate-x-1">
+                                            <div class={`text-${themeColor} opacity-70 group-hover/book:opacity-100 transition-opacity`}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" /><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" /></svg>
+                                            </div>
+                                            <span class="text-ink/80 font-medium text-sm md:text-base group-hover/book:text-lajevard transition-colors leading-snug">
+                                                {book}
+                                            </span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            
+                            <div class={`mt-6 mx-auto w-12 h-1.5 rounded-full bg-${themeColor}/20 group-hover:bg-${themeColor}/50 transition-colors duration-500`}></div>
+                        </div>
                     </div>
+                    
+                    <div class={`absolute inset-x-4 bottom-0 h-12 bg-${themeColor} blur-[30px] opacity-0 group-hover:opacity-40 transition-opacity duration-700 -z-10 rounded-full`}></div>
                 </div>
-            ))}
+                );
+            })}
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes shimmerDiagonal {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    .animate-shimmer-diagonal {
+        animation: shimmerDiagonal 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes shimmerRight {
+        0% { transform: translateX(-150%) skewX(12deg); }
+        100% { transform: translateX(150%) skewX(12deg); }
+    }
+    .animate-shimmer-right {
+        animation: shimmerRight 3s linear infinite;
+    }
+
+    @keyframes pulseSlow {
+        0%, 100% { opacity: 0.1; }
+        50% { opacity: 0.25; }
+    }
+    .animate-pulse-slow {
+        animation: pulseSlow 8s ease-in-out infinite;
+    }
+    
+    @keyframes floatParticle {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        33% { transform: translate(30px, -50px) rotate(10deg); }
+        66% { transform: translate(-20px, 40px) rotate(-5deg); }
+    }
+    .animate-float-particle {
+        animation: floatParticle 20s ease-in-out infinite alternate;
+    }
+    
+    .rotate-x-2 {
+        transform: rotateX(2deg) translateY(-12px);
+    }
+</style>

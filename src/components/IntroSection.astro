@@ -10,36 +10,97 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<section id="about" class="py-24 bg-kashi relative overflow-hidden">
+<section id="about" class="relative py-24 bg-paper overflow-hidden">
     
+    <div class="absolute top-0 right-0 opacity-[0.03] pointer-events-none select-none z-0">
+        <svg viewBox="0 0 500 500" class="w-[800px] h-[800px] text-ink fill-current rotate-12">
+            <path d="M100,250 Q150,100 250,250 T400,250" stroke="currentColor" stroke-width="2" fill="none" />
+            <text x="50" y="150" font-family="Nastaliq, serif" font-size="120" class="blur-sm">روایتِ ما</text>
+        </svg>
+    </div>
+
+    <div class="absolute inset-0 opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] mix-blend-multiply pointer-events-none"></div>
+
     <div class="container mx-auto px-6 relative z-10">
-       <div class="flex flex-col md:flex-row items-center gap-16">
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative w-80 h-[450px]">
-                    <div class="absolute inset-0 bg-lajevard rounded-t-[10rem] shadow-2xl transform -translate-x-4 translate-y-4"></div>
-                    <div class="absolute inset-0 bg-white rounded-t-[10rem] overflow-hidden border-4 border-tala shadow-inner">
-                        <img src="https://hadihashemi.info/wp-content/uploads/2025/12/IMG_20251205_173538_889-1536x864-1.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-1000" alt="جلسات جریان">
+       <div class="flex flex-col lg:flex-row items-center gap-20">
+            
+            <div class="lg:w-5/12 flex justify-center items-center">
+                <div class="relative w-full max-w-sm aspect-[3/4] group">
+                    
+                    <div class="absolute inset-0 bg-lajevard rounded-t-full rounded-b-[3rem] transform -translate-x-4 translate-y-4 transition-transform duration-500 group-hover:-translate-x-6 group-hover:translate-y-6"></div>
+                    
+                    <div class="relative h-full w-full bg-white rounded-t-full rounded-b-[3rem] overflow-hidden border-[3px] border-tala shadow-2xl z-10">
+                        <img 
+                            src="https://hadihashemi.info/wp-content/uploads/2025/12/IMG_20251205_173538_889-1536x864-1.jpg" 
+                            class="w-full h-full object-cover transform transition-transform duration-[2000ms] group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0" 
+                            alt="جلسات جریان"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-tr from-lajevard/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-multiply"></div>
                     </div>
-                    <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-firoozeh rounded-full opacity-80 mix-blend-multiply blur-2xl animate-pulse"></div>
+
+                    <div class="absolute -bottom-5 -right-5 z-20 w-24 h-24 bg-paper rounded-full border-4 border-lajevard shadow-[0_10px_20px_rgba(30,58,138,0.3)] flex items-center justify-center animate-float">
+                        <div class="w-16 h-16 border border-tala/50 rounded-full flex items-center justify-center p-2 text-center bg-white/50 backdrop-blur-sm">
+                            <span class="text-[10px] font-bold text-lajevard leading-tight">تاسیس<br/><span class="text-xl text-tala font-black pt-1 block">۱۴۰۲</span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="md:w-1/2 text-right">
-                <div class="flex items-center gap-3 mb-6">
-                    <svg class="w-6 h-6 text-firoozeh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 8L12 10L16 16L12 18L17 22H7L12 18L8 16L12 10L9 8L12 2Z"/></svg>
-                    <span class="text-lajevard font-bold text-sm tracking-wider">حکایت ما</span>
-                </div>
-                <h3 class="text-4xl lg:text-5xl font-black text-lajevard mb-8 leading-tight drop-shadow-sm">{data.title}</h3>
+            <div class="lg:w-7/12 text-right flex flex-col justify-center">
                 
-                <div class="bg-white p-8 rounded-tr-3xl rounded-bl-3xl border-r-4 border-firoozeh shadow-glaze relative">
-                    <div class="absolute inset-0 bg-eslimi opacity-[0.05]"></div>
-                    <p class="text-slate-700 leading-9 text-justify text-lg relative z-10">
-                        {data.p1}
-                        <br/><br/>
-                        <span class="text-ajor font-bold">{data.p2}</span>
-                    </p>
+                <div class="flex items-center gap-3 mb-4 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="h-px w-12 bg-tala"></div>
+                    <span class="text-tala font-bold text-sm tracking-[0.2em] uppercase">درباره گروه</span>
                 </div>
+
+                <h3 class="text-4xl lg:text-6xl font-black text-ink mb-10 leading-tight drop-shadow-sm opacity-0 animate-fade-in-up" style="animation-delay: 0.4s">
+                    {data.title}
+                    <span class="text-tala">.</span>
+                </h3>
+                
+                <div class="relative pr-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.6s">
+                    <div class="absolute right-0 top-2 bottom-2 w-1 bg-gradient-to-b from-lajevard via-firoozeh to-transparent rounded-full opacity-60"></div>
+                    
+                    <div class="space-y-6">
+                        <p class="text-ink/80 leading-[2.2rem] text-justify text-lg font-light font-['Vazirmatn']">
+                            {data.p1}
+                        </p>
+                        
+                        <div class="relative bg-white/40 p-6 rounded-2xl border border-ink/5 backdrop-blur-sm shadow-sm transition-all duration-300 hover:shadow-md hover:border-tala/30 hover:bg-white/60">
+                            <div class="absolute top-2 left-4 text-6xl text-lajevard/5 font-serif select-none">”</div>
+                            <p class="text-ink leading-[2.2rem] text-justify text-lg font-medium relative z-10">
+                                {data.p2}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s">
+                   <div class="inline-flex items-center gap-2 text-lajevard font-bold border-b-2 border-tala/50 pb-1 cursor-default hover:text-tala transition-colors">
+                        <span>همراه با کلمات</span>
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                   </div>
+                </div>
+
             </div>
-        </div>
+       </div>
     </div>
 </section>
+
+<style>
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fadeInUp 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+    }
+</style>

@@ -1,4 +1,5 @@
 ---
+/* Founders.astro - نسخه نهایی: فانوس خاموش که با هاور روشن می‌شود */
 interface Founder {
   name: string;
   role: string;
@@ -12,28 +13,130 @@ interface Props {
 const { founders } = Astro.props;
 ---
 
-<section id="founders" class="py-24 bg-gradient-to-b from-white to-kashi">
-    <div class="container mx-auto px-6 text-center">
-        <h3 class="text-3xl font-black text-lajevard mb-16">اهالی این عمارت</h3>
+<section id="founders" class="py-32 bg-[#FDFCF8] relative overflow-hidden">
+    
+    <div class="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply" style="background-image: url('https://www.transparenttextures.com/patterns/wall-4-light.png');"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="text-center mb-24">
+            <div class="inline-block relative">
+                <h3 class="text-4xl lg:text-5xl font-black text-ink mb-4 drop-shadow-sm relative z-10">اهالی این عمارت</h3>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-lajevard rounded-full"></div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-tala rounded-full animate-shimmer-bar opacity-70"></div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-24 gap-x-16 lg:gap-x-20 max-w-6xl mx-auto">
             {founders.map((person) => (
-                <div class="group relative">
-                    <div class="bg-white pt-12 pb-8 px-6 rounded-t-[50%] rounded-b-lg border border-slate-100 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-lajevard via-firoozeh to-lajevard"></div>
+                <div class="group relative flex flex-col items-center">
+                    
+                    <div class="relative w-full aspect-[3/5] max-w-[300px] rounded-t-full bg-stone-200 overflow-hidden transition-all duration-700 shadow-[inset_0_10px_30px_rgba(0,0,0,0.25)] border-b-[6px] border-[#FDFCF8] group-hover:shadow-[inset_0_15px_40px_rgba(0,0,0,0.3)]">
                         
-                        <div class="w-32 h-32 mx-auto mb-6 rounded-full p-1 border-2 border-tala group-hover:bg-tala transition-colors duration-500">
-                            <img src={person.image} alt={person.name} class="w-full h-full rounded-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500" />
+                        <div class="absolute inset-0 opacity-[0.08] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] transition-opacity duration-500"></div>
+                        
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 z-30 origin-top animate-swing">
+                            
+                            <div class="flex flex-col items-center">
+                                <div class="w-2 h-2 rounded-full bg-amber-900/80 shadow-sm relative z-10"></div>
+                                <div class="w-[2px] h-8 bg-gradient-to-b from-amber-800 via-amber-950 to-amber-800"></div>
+                                <div class="w-2.5 h-2.5 rounded-full border-[1.5px] border-amber-800 -mt-1 relative z-10"></div>
+                            </div>
+
+                            <div class="relative -mt-[2px] flex flex-col items-center drop-shadow-md">
+                                <div class="w-9 h-3.5 bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900 rounded-t-full relative overflow-hidden z-20 group-hover:via-tala transition-colors duration-700">
+                                     <div class="absolute inset-0 opacity-30 bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgba(0,0,0,0.5)_2px,rgba(0,0,0,0.5)_3px)]"></div>
+                                </div>
+
+                                <div class="relative w-7 h-10 border-x-[1.5px] border-amber-800/60 flex items-center justify-center overflow-hidden z-10 transition-all duration-700 bg-slate-900/20 group-hover:bg-amber-100/10 group-hover:border-tala/70 group-hover:backdrop-blur-[0.5px]">
+                                    
+                                    <div class="absolute inset-0 flex justify-center h-full pointer-events-none">
+                                        <div class="w-[1px] h-full bg-amber-900/40 mx-1 group-hover:bg-tala/30 transition-colors duration-700"></div>
+                                        <div class="w-[1px] h-full bg-amber-900/40 mx-1 group-hover:bg-tala/30 transition-colors duration-700"></div>
+                                    </div>
+
+                                    <div class="relative z-30 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-700 ease-out origin-bottom">
+                                        <div class="w-1.5 h-2.5 bg-gradient-to-t from-orange-600 via-yellow-400 to-white rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] blur-[0.5px] animate-flicker"></div>
+                                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-8 bg-orange-400/40 rounded-full blur-md animate-pulse-fast"></div>
+                                    </div>
+                                </div>
+
+                                <div class="w-9 h-2.5 bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900 rounded-b-lg z-20 relative group-hover:via-tala transition-colors duration-700">
+                                    <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-amber-800 rounded-full shadow-sm group-hover:bg-tala transition-colors duration-700"></div>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="text-xl font-bold text-lajevard mb-2">{person.name}</h4>
-                        <span class="text-sm text-ajor font-medium">{person.role}</span>
-                        
-                        <div class="mt-6 flex justify-center opacity-30 group-hover:opacity-100 transition duration-500">
-                            <svg class="w-6 h-6 text-lajevard" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.5 9.5H22L16 14.5L18.5 22L12 17.5L5.5 22L8 14.5L2 9.5H9.5L12 2Z"/></svg>
+
+                        <div class="absolute top-14 left-1/2 -translate-x-1/2 w-[160%] h-full bg-gradient-to-b from-yellow-200/40 via-orange-100/10 to-transparent z-20 opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-in-out pointer-events-none mix-blend-hard-light blur-xl"></div>
+
+                        <div class="absolute bottom-0 inset-x-0 h-[88%] z-10 flex items-end justify-center transition-transform duration-700 group-hover:scale-105 origin-bottom">
+                            <img 
+                                src={person.image} 
+                                alt={person.name} 
+                                class="w-full h-full object-cover grayscale-[100%] contrast-[1.1] brightness-[0.7] group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 transition-all duration-1000 ease-out"
+                                style={{ maskImage: 'linear-gradient(to top, black 70%, transparent 98%)' }}
+                            />
+                        </div>
+
+                        <div class="absolute inset-0 rounded-t-full shadow-[inset_0_40px_70px_rgba(10,5,0,0.6)] z-20 pointer-events-none mix-blend-multiply transition-opacity duration-500 group-hover:opacity-70"></div>
+                    </div>
+
+                    <div class="mt-8 text-center relative z-20">
+                        <div class="relative inline-block py-3 px-10 border-2 border-ink/5 bg-[#FDFCF8] shadow-[0_5px_15px_rgba(0,0,0,0.05)] rounded-xl transition-all duration-500 group-hover:-translate-y-1 group-hover:border-tala/40 group-hover:shadow-md">
+                            <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-tala opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-tala opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-tala opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-tala opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                            <h4 class="text-2xl font-black text-ink mb-1.5 group-hover:text-lajevard transition-colors duration-300 tracking-tight">{person.name}</h4>
+                            <span class="text-sm font-bold text-tala tracking-wider uppercase opacity-90">{person.role}</span>
                         </div>
                     </div>
+
                 </div>
             ))}
         </div>
     </div>
 </section>
+
+<style>
+    /* نوسان آرام فانوس */
+    @keyframes swing {
+        0% { transform: rotate(1.5deg); }
+        50% { transform: rotate(-1.5deg); }
+        100% { transform: rotate(1.5deg); }
+    }
+    .animate-swing {
+        animation: swing 7s ease-in-out infinite;
+    }
+
+    /* حرکت نور روی خط زیر تیتر */
+    @keyframes shimmerBar {
+        0% { transform: translateX(-100%); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateX(100%); opacity: 0; }
+    }
+    .animate-shimmer-bar {
+        animation: shimmerBar 3s linear infinite;
+    }
+
+    /* لرزش شعله آتش */
+    @keyframes flicker {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        25% { transform: scale(1.05) skewX(1deg); opacity: 1; }
+        50% { transform: scale(0.95) skewX(-1deg); opacity: 0.9; }
+        75% { transform: scale(1.02) skewX(0.5deg); opacity: 1; }
+    }
+    .animate-flicker {
+        animation: flicker 2s infinite steps(6);
+    }
+    
+    /* تپش هاله نور */
+    @keyframes pulseFast {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+        50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+    }
+    .animate-pulse-fast {
+        animation: pulseFast 1.5s ease-in-out infinite;
+    }
+</style>
