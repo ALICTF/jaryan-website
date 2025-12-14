@@ -229,7 +229,7 @@ export default function ReservationModal() {
 
       {mounted && isOpen && createPortal(modalContent, document.body)}
 
-      // ✅ درست
+    
       <style>{`
   @keyframes slideUpElastic {
     0% { opacity: 0; transform: translateY(100px) scale(0.8); }
