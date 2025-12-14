@@ -1,5 +1,12 @@
 ---
-/* Flows.astro - طرح باغ کاغذی (مینیمال و آبرنگی) */
+/* Flows.astro */
+import FlowsSlider from './FlowsSlider.jsx';
+
+// ایمپورت CSS های لازم
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+import 'swiper/css/pagination';
+
 interface Flow {
   country: string;
   flag: string;
@@ -12,113 +19,48 @@ interface Props {
 }
 
 const { flows } = Astro.props;
-
-const extractColorClass = (styleClass: string) => {
-    return styleClass.replace('border-', '').replace('bg-', '');
-};
 ---
 
-<section id="flows" class="py-32 bg-[#F9F9F9] relative overflow-hidden">
+<section id="flows" class="relative overflow-hidden bg-[#F3F4F6] min-h-[700px] flex flex-col justify-center py-20">
     
-    <div class="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] mix-blend-multiply"></div>
-    
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.03] pointer-events-none rotate-12">
-        <svg viewBox="0 0 200 200" fill="currentColor" class="text-lajevard">
-             <path d="M100 0 C 120 50, 150 50, 150 100 C 150 150, 100 150, 100 200 C 80 150, 50 150, 50 100 C 50 50, 100 50, 100 0 Z" />
-        </svg>
+    <div class="absolute inset-0 opacity-[0.4]" 
+         style="background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px); background-size: 24px 24px;">
     </div>
+    
+    <div class="absolute inset-0 bg-gradient-to-t from-[#F3F4F6] via-transparent to-[#F3F4F6]"></div>
 
     <div class="container mx-auto px-6 relative z-10">
         
-        <div class="text-center mb-20">
-            <span class="text-tala text-sm font-bold tracking-[0.3em] uppercase block mb-3 animate-fade-in-up">ادبیات جهان</span>
-            <h3 class="text-4xl lg:text-5xl font-black text-ink mb-6 drop-shadow-sm font-['Vazirmatn']">سرزمین‌های کلمات</h3>
+        <div class="flex flex-col md:flex-row items-center justify-between mb-16 gap-6 max-w-4xl mx-auto">
+            <div class="text-center md:text-right">
+                <h3 class="text-4xl lg:text-5xl font-black text-ink mb-2">کلکسیون ملل</h3>
+                <p class="text-slate-500 text-sm font-medium">نگاهی کوتاه به گنجینه‌های ادبی جهان</p>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-2">
+                <div class="h-px w-16 bg-slate-300"></div>
+                <div class="text-xs font-mono text-slate-400">SCROLL TO EXPLORE</div>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {flows.map((flow) => {
-                const themeColor = extractColorClass(flow.style);
-                
-                return (
-                <div class="group relative h-full">
-                    
-                    <div class="relative h-full bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-100/50">
-                        
-                        <div class={`absolute -top-10 -right-10 w-40 h-40 bg-${themeColor} rounded-full blur-[60px] opacity-10 group-hover:opacity-20 transition-opacity duration-700`}></div>
-                        <div class={`absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-${themeColor}/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-
-                        <div class="absolute top-6 left-6 opacity-10 group-hover:opacity-100 transition-all duration-700 pointer-events-none">
-                            <div class={`text-${themeColor} animate-spin-slow`}>
-                                <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2L14.5 9.5H22L16 14.5L18.5 22L12 17.5L5.5 22L8 14.5L2 9.5H9.5L12 2Z" opacity="0.2"/>
-                                    <path d="M12 0L13.5 8H20L15 12.5L17.5 20L12 15L6.5 20L9 12.5L4 8H10.5L12 0Z" transform="rotate(45 12 12)" opacity="0.4"/>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="p-8 relative z-10">
-                            
-                            <div class="flex items-center gap-4 mb-8">
-                                <div class="relative w-14 h-14 shrink-0">
-                                    <div class={`absolute inset-0 bg-${themeColor}/10 rounded-xl rotate-6 group-hover:rotate-12 transition-transform duration-500`}></div>
-                                    <div class="absolute inset-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-2xl grayscale group-hover:grayscale-0 transition-all duration-500 z-10">
-                                        {flow.flag}
-                                    </div>
-                                </div>
-                                
-                                <div class="flex flex-col">
-                                    <h4 class="text-2xl font-black text-ink group-hover:text-lajevard transition-colors duration-300">{flow.country}</h4>
-                                    <span class={`text-xs font-bold text-${themeColor} opacity-60 group-hover:opacity-100 transition-opacity duration-300`}>مجموعه آثار منتخب</span>
-                                </div>
-                            </div>
-
-                            <div class="relative pl-4">
-                                <div class={`absolute right-1.5 top-2 bottom-6 w-px bg-slate-100 group-hover:bg-${themeColor}/30 transition-colors duration-500`}></div>
-
-                                <ul class="space-y-4">
-                                    {flow.books.map((book) => (
-                                        <li class="relative group/book pr-6">
-                                            <div class={`absolute right-0 top-2.5 w-3 h-3 rounded-full bg-white border-2 border-slate-200 group-hover:border-${themeColor} group-hover/book:bg-${themeColor} transition-colors duration-300 z-10`}></div>
-                                            
-                                            <div class="flex items-center justify-between">
-                                                <span class="text-ink/70 font-medium text-base group-hover/book:text-ink transition-colors duration-300">
-                                                    {book}
-                                                </span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class={`w-4 h-4 text-${themeColor} opacity-0 -translate-x-2 group-hover/book:opacity-100 group-hover/book:translate-x-0 transition-all duration-300`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                                </svg>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            
-                        </div>
-
-                        <div class={`absolute bottom-0 left-0 w-full h-1 bg-${themeColor} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left`}></div>
-                    </div>
-                </div>
-                );
-            })}
+        <div class="max-w-5xl mx-auto">
+            <FlowsSlider client:load flows={flows} />
         </div>
+
     </div>
 </section>
 
-<style>
-    /* چرخش آرام ماندالا */
-    @keyframes spinSlow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(35deg); }
+<style is:global>
+    /* کاستومایز کردن دکمه‌های Pagination */
+    .swiper-pagination-bullet {
+        background: #94a3b8;
+        opacity: 0.5;
+        transition: all 0.3s;
     }
-    .animate-spin-slow {
-        animation: spinSlow 30s linear infinite;
-    }
-
-    .animate-fade-in-up {
-        animation: fadeInUp 1s ease-out forwards;
-    }
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    .swiper-pagination-bullet-active {
+        background: #0f172a !important;
+        width: 24px;
+        border-radius: 10px;
+        opacity: 1;
     }
 </style>
