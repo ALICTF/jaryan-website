@@ -1,4 +1,5 @@
 ---
+/* SpecialFlows.astro - نسخه فیکس شده (بدون باگ نوری و فاصله عکس) */
 interface SpecialFlow {
   title: string;
   desc: string;
@@ -13,27 +14,91 @@ interface Props {
 const { flows } = Astro.props;
 ---
 
-<section class="py-24 bg-kashi relative">
-    <div class="container mx-auto px-6">
-        <h3 class="text-3xl font-black text-center text-lajevard mb-16">پنجره‌هایی رو به جریان</h3>
+<section class="py-32 bg-lajevard relative overflow-hidden">
+    
+    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none mix-blend-screen animate-pulse-slow"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/60 pointer-events-none"></div>
+
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-firoozeh/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-tala/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center mb-20">
+            <div class="inline-block relative">
+                <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-tala/50 text-6xl opacity-20 pointer-events-none select-none">✦</span>
+                <h3 class="text-3xl lg:text-5xl font-black text-white mb-4 drop-shadow-lg tracking-wide">پنجره‌هایی رو به جریان</h3>
+                <div class="flex items-center justify-center gap-2">
+                    <div class="h-px w-12 bg-gradient-to-l from-firoozeh to-transparent"></div>
+                    <div class="w-1.5 h-1.5 rotate-45 bg-firoozeh"></div>
+                    <div class="h-px w-12 bg-gradient-to-r from-firoozeh to-transparent"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
             {flows.map((flow) => (
-                <div class="relative h-96 group cursor-pointer perspective-1000">
-                    <div class="absolute inset-0 rounded-t-full border-4 border-ajor bg-white overflow-hidden shadow-2xl transition-transform duration-500 group-hover:-translate-y-2">
-                        <img src={flow.image} class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition duration-700" alt={flow.title} />
-                        <div class="absolute inset-0 bg-lajevard/40 mix-blend-multiply group-hover:bg-transparent transition duration-500"></div>
+                <div class="group relative h-[500px] perspective-1000">
+                    
+                    <div class="relative h-full w-full rounded-t-full rounded-b-2xl bg-slate-900 shadow-2xl transition-all duration-700 group-hover:-translate-y-4 group-hover:shadow-[0_20px_60px_-10px_rgba(14,165,233,0.3)] overflow-hidden transform-gpu isolate">
                         
-                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent text-center">
-                            <div class="w-12 h-12 mx-auto bg-firoozeh rounded-full flex items-center justify-center text-2xl mb-2 shadow-lg text-white">
+                        <div class="absolute inset-0 z-0">
+                            <img 
+                                src={flow.image} 
+                                alt={flow.title} 
+                                class="w-full h-full object-cover opacity-60 grayscale-[80%] scale-100 group-hover:scale-110 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 ease-out will-change-transform"
+                            />
+                        </div>
+
+                        <div class="absolute inset-0 bg-lajevard/80 z-10 mix-blend-multiply transition-all duration-700 group-hover:bg-lajevard/20 backdrop-blur-[2px] group-hover:backdrop-blur-none pointer-events-none">
+                            <div class="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/black-scales.png')] group-hover:opacity-0 transition-opacity duration-700"></div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent z-20 translate-x-[-150%] skew-x-12 transition-transform duration-1000 group-hover:translate-x-[150%] pointer-events-none"></div>
+
+                        <div class="absolute inset-0 rounded-t-full rounded-b-2xl border-[3px] border-lajevard/50 pointer-events-none z-40 group-hover:border-tala/60 transition-colors duration-500"></div>
+
+                        <div class="absolute inset-3 rounded-t-full rounded-b-xl border border-white/10 pointer-events-none z-40 group-hover:border-tala/30 transition-colors duration-500"></div>
+
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 z-30 origin-top flex flex-col items-center transition-transform duration-700 group-hover:translate-y-2">
+                            <div class="w-[1px] h-16 bg-gradient-to-b from-tala to-white/50 group-hover:h-12 transition-all duration-500 delay-100"></div>
+                            <div class="w-14 h-14 rounded-full border-2 border-tala/50 bg-lajevard/90 backdrop-blur-md flex items-center justify-center text-2xl text-tala shadow-[0_0_20px_rgba(251,191,36,0.3)] group-hover:bg-tala group-hover:text-lajevard group-hover:border-white group-hover:scale-110 transition-all duration-500">
                                 {flow.icon}
                             </div>
-                            <h4 class="text-xl font-bold text-white mb-1">{flow.title}</h4>
-                            <p class="text-xs text-white/80">{flow.desc}</p>
                         </div>
+
+                        <div class="absolute bottom-0 inset-x-0 p-8 z-30 bg-gradient-to-t from-black via-black/80 to-transparent pt-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                            
+                            <div class="w-12 h-1 bg-firoozeh rounded-full mx-auto mb-4 w-0 group-hover:w-12 transition-all duration-500 ease-out"></div>
+
+                            <h4 class="text-2xl font-black text-white text-center mb-3 drop-shadow-md group-hover:text-tala transition-colors duration-300">
+                                {flow.title}
+                            </h4>
+                            
+                            <p class="text-sm text-slate-300 text-center leading-relaxed opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-100 font-light">
+                                {flow.desc}
+                            </p>
+                            
+                            <div class="mt-6 flex justify-center opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 delay-200">
+                                <span class="text-xs font-bold text-firoozeh border-b border-firoozeh/50 pb-0.5 hover:text-white hover:border-white transition-colors cursor-pointer">
+                                    مشاهده جزئیات
+                                </span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             ))}
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes pulseSlow {
+        0%, 100% { opacity: 0.08; }
+        50% { opacity: 0.15; }
+    }
+    .animate-pulse-slow {
+        animation: pulseSlow 8s ease-in-out infinite;
+    }
+</style>
