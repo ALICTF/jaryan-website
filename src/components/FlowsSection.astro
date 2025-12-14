@@ -2,9 +2,9 @@
 /* Flows.astro */
 import FlowsSlider from './FlowsSlider.jsx';
 
-// ایمپورت CSS های لازم
+// ایمپورت CSS های Swiper
 import 'swiper/css';
-import 'swiper/css/effect-creative';
+import 'swiper/css/effect-cards';
 import 'swiper/css/pagination';
 
 interface Flow {
@@ -21,46 +21,46 @@ interface Props {
 const { flows } = Astro.props;
 ---
 
-<section id="flows" class="relative overflow-hidden bg-[#F3F4F6] min-h-[700px] flex flex-col justify-center py-20">
+<section id="flows" class="relative overflow-hidden bg-lajevard py-24 min-h-[700px] flex flex-col justify-center">
     
-    <div class="absolute inset-0 opacity-[0.4]" 
-         style="background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px); background-size: 24px 24px;">
-    </div>
+    <div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-screen bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]"></div>
     
-    <div class="absolute inset-0 bg-gradient-to-t from-[#F3F4F6] via-transparent to-[#F3F4F6]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-firoozeh/20 rounded-full blur-[120px] pointer-events-none"></div>
 
     <div class="container mx-auto px-6 relative z-10">
         
-        <div class="flex flex-col md:flex-row items-center justify-between mb-16 gap-6 max-w-4xl mx-auto">
-            <div class="text-center md:text-right">
-                <h3 class="text-4xl lg:text-5xl font-black text-ink mb-2">کلکسیون ملل</h3>
-                <p class="text-slate-500 text-sm font-medium">نگاهی کوتاه به گنجینه‌های ادبی جهان</p>
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center justify-center gap-3 mb-4 opacity-80">
+                <div class="h-px w-8 bg-gradient-to-l from-tala to-transparent"></div>
+                <span class="text-tala text-xs font-bold tracking-[0.2em] uppercase">گنجینه ملل</span>
+                <div class="h-px w-8 bg-gradient-to-r from-tala to-transparent"></div>
             </div>
             
-            <div class="hidden md:flex items-center gap-2">
-                <div class="h-px w-16 bg-slate-300"></div>
-                <div class="text-xs font-mono text-slate-400">SCROLL TO EXPLORE</div>
-            </div>
+            <h3 class="text-4xl lg:text-5xl font-black text-white mb-6 drop-shadow-md">
+                روایت‌های <span class="text-firoozeh">جهان</span>
+            </h3>
+            
+            <p class="text-white/70 font-light text-lg max-w-lg mx-auto leading-8">
+                گزیده‌ای از آثار ماندگار ادبیات جهان، در قابی از نقش و نگار ایرانی.
+            </p>
         </div>
 
-        <div class="max-w-5xl mx-auto">
-            <FlowsSlider client:load flows={flows} />
-        </div>
+        <FlowsSlider client:load flows={flows} />
 
     </div>
 </section>
 
 <style is:global>
-    /* کاستومایز کردن دکمه‌های Pagination */
+    /* استایل دکمه‌های صفحه‌بندی (Pagination) */
     .swiper-pagination-bullet {
-        background: #94a3b8;
-        opacity: 0.5;
-        transition: all 0.3s;
+        background-color: #ffffff;
+        opacity: 0.4;
     }
     .swiper-pagination-bullet-active {
-        background: #0f172a !important;
-        width: 24px;
+        background-color: #fbbf24 !important; /* Tala Color */
+        width: 20px;
         border-radius: 10px;
         opacity: 1;
+        transition: width 0.3s ease;
     }
 </style>

@@ -1,112 +1,123 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// فقط ماژول‌ها (بدون CSS)
-import { EffectCreative, Pagination, Autoplay } from 'swiper/modules';
+// افکت Cards برای حالت پشته‌ای (Stack) عالی است
+import { EffectCards, Pagination, Autoplay } from 'swiper/modules';
 
 export default function FlowsSlider({ flows }) {
   
   return (
-    <div className="relative w-full py-10 flex justify-center">
+    <div className="relative w-full py-10 flex justify-center items-center">
       <Swiper
+        effect={'cards'}
         grabCursor={true}
-        effect={'creative'}
-        creativeEffect={{
-          prev: {
-            shadow: true,
-            translate: [0, 0, -400],
-          },
-          next: {
-            translate: ['100%', 0, 0],
-          },
+        cardsEffect={{
+            perSlideOffset: 15, // فاصله کارت‌های زیرین
+            perSlideRotate: 4,  // چرخش کارت‌های زیرین
+            slideShadows: true, // سایه طبیعی
         }}
-        // تنظیمات برای حالت کارتی (Stack)
-        centeredSlides={true}
-        slidesPerView={'auto'}
-        initialSlide={0}
-        loop={true}
-        speed={500}
         autoplay={{
-            delay: 3000,
+            delay: 4000,
             disableOnInteraction: false,
         }}
         pagination={{ clickable: true, dynamicBullets: true }}
-        modules={[EffectCreative, Pagination, Autoplay]}
-        className="w-[280px] md:w-[320px] !overflow-visible" // سایز باکس‌ها همینجا کنترل می‌شود
+        modules={[EffectCards, Pagination, Autoplay]}
+        className="w-[280px] md:w-[320px] h-[480px]" // سایز کارت‌ها (سایز کتاب)
       >
         {flows.map((flow, index) => {
-           const themeColor = flow.style.replace('border-', '').replace('bg-', '');
+           // انتخاب رنگ تم بر اساس استایل یا پیش‌فرض
+           const isRed = flow.style.includes('red') || flow.style.includes('rose');
+           const themeColor = isRed ? 'ajor' : 'lajevard'; 
            
            return (
-            <SwiperSlide key={index} className="rounded-3xl">
-              {({ isActive }) => (
-                <div 
-                  className={`relative h-[420px] rounded-3xl overflow-hidden transition-all duration-500 ease-out border border-white/50 bg-white
-                  ${isActive ? 'shadow-[0_25px_60px_-12px_rgba(0,0,0,0.25)]' : 'shadow-sm opacity-50 scale-95 grayscale'}`}
-                >
-                  {/* === افکت نئونی دور کارت (فقط اکتیو) === */}
-                  <div className={`absolute -inset-1 bg-${themeColor} opacity-0 transition-opacity duration-500 blur-xl ${isActive ? 'opacity-30' : ''}`}></div>
+            <SwiperSlide key={index} className="rounded-2xl">
+              <div className="relative w-full h-full bg-[#FDFCF8] rounded-2xl overflow-hidden border-4 border-lajevard/20 shadow-2xl flex flex-col">
+                  
+                  {/* === حاشیه تذهیب (Tazhib Border) === */}
+                  {/* این کادر دوخطی طلایی دور تا دور کارت است */}
+                  <div className="absolute inset-2 border border-tala/40 rounded-xl pointer-events-none z-20"></div>
+                  <div className="absolute inset-3 border border-lajevard/10 rounded-lg pointer-events-none z-20"></div>
 
-                  {/* === بدنه کارت === */}
-                  <div className="relative h-full flex flex-col z-10">
+                  {/* === سرلوحه (Header) === */}
+                  <div className="h-[40%] bg-lajevard relative flex flex-col items-center justify-center p-4 overflow-hidden">
                       
-                      {/* 1. بخش تصویر/پرچم (بالا) */}
-                      <div className={`relative h-[45%] bg-${themeColor}/10 overflow-hidden flex items-center justify-center`}>
-                          {/* پترن پس‌زمینه */}
-                          <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-multiply"></div>
+                      {/* پترن اسلیمی محو در پس‌زمینه هدر */}
+                      <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]"></div>
+                      
+                      {/* ترنج مرکزی (Medallion) */}
+                      <div className="relative w-24 h-24 flex items-center justify-center">
+                          {/* لایه طلایی چرخنده */}
+                          <div className="absolute inset-0 bg-tala/20 rotate-45 rounded-lg backdrop-blur-sm border border-tala/50 animate-spin-slow-reverse"></div>
+                          <div className="absolute inset-0 bg-firoozeh/20 -rotate-12 rounded-lg backdrop-blur-sm border border-firoozeh/50 animate-spin-slow"></div>
                           
-                          {/* دایره رنگی متحرک */}
-                          <div className={`absolute w-32 h-32 bg-${themeColor} rounded-full blur-[50px] opacity-40 animate-pulse`}></div>
-
-                          {/* پرچم */}
-                          <div className="relative z-10 text-6xl drop-shadow-md transform transition-transform duration-700 hover:scale-110 hover:rotate-12 cursor-default">
+                          {/* پرچم کشور */}
+                          <div className="relative z-10 text-5xl drop-shadow-lg grayscale-[20%]">
                               {flow.flag}
                           </div>
-
-                          {/* نام کشور (عمودی در پس‌زمینه) */}
-                          <h4 className="absolute -right-4 top-1/2 -translate-y-1/2 text-6xl font-black text-ink/5 rotate-90 select-none pointer-events-none uppercase">
-                              {flow.country}
-                          </h4>
                       </div>
 
-                      {/* 2. بخش محتوا (پایین) */}
-                      <div className="flex-grow bg-white/80 backdrop-blur-md p-6 flex flex-col relative">
-                          
-                          {/* خط جداکننده موج‌دار */}
-                          <div className="absolute -top-3 left-0 w-full h-6 bg-white rounded-t-[50%] scale-x-150"></div>
+                      {/* نام کشور (تایپوگرافی) */}
+                      <h4 className="mt-4 text-2xl font-black text-tala drop-shadow-md tracking-wider z-10 font-['Vazirmatn']">
+                          {flow.country}
+                      </h4>
+                      
+                      {/* جداکننده تزئینی */}
+                      <div className="absolute bottom-0 w-full h-1 bg-gradient-to-r from-lajevard via-tala to-lajevard"></div>
+                  </div>
 
-                          <div className="relative z-10 pt-2 text-center">
-                              <h3 className="text-2xl font-black text-ink mb-1">{flow.country}</h3>
-                              <p className={`text-[10px] font-bold text-${themeColor} uppercase tracking-[0.2em] mb-6`}>Literary Collection</p>
+                  {/* === بدنه کتاب (Body) === */}
+                  <div className="flex-grow p-6 relative bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]">
+                      
+                      {/* عنوان بخش */}
+                      <div className="text-center mb-4">
+                           <span className="text-xs font-bold text-lajevard/60 bg-lajevard/5 px-3 py-1 rounded-full border border-lajevard/10">
+                               منتخب آثار
+                           </span>
+                      </div>
 
-                              {/* لیست کتاب‌ها (فشرده) */}
-                              <div className="space-y-3 text-right">
-                                  {flow.books.slice(0, 3).map((book, idx) => (
-                                      <div key={idx} className="flex items-center gap-3 group/item">
-                                          <div className={`w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/item:bg-${themeColor} transition-colors`}></div>
-                                          <span className="text-sm font-bold text-slate-600 group-hover/item:text-ink transition-colors truncate">
-                                              {book}
-                                          </span>
-                                      </div>
-                                  ))}
-                              </div>
-                          </div>
+                      {/* لیست کتاب‌ها */}
+                      <ul className="space-y-3 relative z-10">
+                          {flow.books.slice(0, 4).map((book, idx) => (
+                              <li key={idx} className="flex items-center gap-3 group/book cursor-default">
+                                  {/* بولت پوینت اسلیمی (لوزی) */}
+                                  <div className="w-2 h-2 rotate-45 bg-tala group-hover/book:bg-firoozeh transition-colors duration-300"></div>
+                                  
+                                  <span className="text-ink/80 font-bold text-sm leading-relaxed group-hover/book:text-lajevard transition-colors duration-300">
+                                      {book}
+                                  </span>
+                              </li>
+                          ))}
+                      </ul>
 
-                          {/* دکمه پایین */}
-                          <div className="mt-auto pt-6 flex justify-center">
-                              <div className={`w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-${themeColor} hover:text-white hover:border-${themeColor} transition-all duration-300 cursor-pointer`}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                  </svg>
-                              </div>
-                          </div>
+                      {/* المان تزئینی پایین صفحه (پایان کتاب) */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-30">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-lajevard">
+                              <path d="M12 2L14.5 9.5H22L16 14.5L18.5 22L12 17.5L5.5 22L8 14.5L2 9.5H9.5L12 2Z"/>
+                          </svg>
                       </div>
                   </div>
-                </div>
-              )}
+              </div>
             </SwiperSlide>
           );
         })}
       </Swiper>
+      
+      {/* استایل برای انیمیشن‌های چرخش آرام */}
+      <style jsx global>{`
+        @keyframes spinSlow {
+            from { transform: rotate(-12deg); }
+            to { transform: rotate(348deg); }
+        }
+        .animate-spin-slow {
+            animation: spinSlow 20s linear infinite;
+        }
+        @keyframes spinSlowReverse {
+            from { transform: rotate(45deg); }
+            to { transform: rotate(-315deg); }
+        }
+        .animate-spin-slow-reverse {
+            animation: spinSlowReverse 25s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }
